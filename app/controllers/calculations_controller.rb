@@ -87,27 +87,27 @@ class CalculationsController < ApplicationController
     # The numbers the user input are in the array @numbers.
     # ================================================================================
 
-    @sorted_numbers = "Replace this string with your answer."
+    @sorted_numbers = @numbers.sort
 
-    @count = "Replace this string with your answer."
+    @count = @numbers.count
 
-    @minimum = "Replace this string with your answer."
+    @minimum = @numbers.min
 
-    @maximum = "Replace this string with your answer."
+    @maximum = @numbers.max
 
-    @range = "Replace this string with your answer."
+    @range = @numbers.max - @numbers.min
 
-    @median = "Replace this string with your answer."
+    @median = (@numbers.sort[(@numbers.sort.length - 1) / 2] + @numbers.sort[@numbers.sort.length / 2]) / 2.0
 
-    @sum = "Replace this string with your answer."
+    @sum = @numbers.inject(0){|sum,x| sum + x }
 
-    @mean = "Replace this string with your answer."
+    @mean = @sum/@count
 
-    @variance = "Replace this string with your answer."
+    @variance = @numbers.inject(0){|accum, i| accum + (i - @mean)**2 }/(@count)
 
-    @standard_deviation = "Replace this string with your answer."
+    @standard_deviation = @variance**0.5
 
-    @mode = "Replace this string with your answer."
+    @mode = @numbers.max_by { |v| @numbers.inject(Hash.new(0)) { |h,v| h[v] += 1; h }}
 
     # ================================================================================
     # Your code goes above.

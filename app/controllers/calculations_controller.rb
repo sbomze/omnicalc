@@ -10,14 +10,17 @@ class CalculationsController < ApplicationController
     # The special word the user input is in the string @special_word.
     # ================================================================================
 
+    @text = @text.downcase
 
-    @word_count = "Replace this string with your answer."
+    text_split_into_array = @text.split
 
-    @character_count_with_spaces = "Replace this string with your answer."
+    @word_count = text_split_into_array.size
 
-    @character_count_without_spaces = "Replace this string with your answer."
+    @character_count_with_spaces = @text.chars.length
 
-    @occurrences = "Replace this string with your answer."
+    @character_count_without_spaces = @text.tr(" ", "").chars.length
+
+    @occurrences = text_split_into_array.count(@special_word)
 
     # ================================================================================
     # Your code goes above.
@@ -38,7 +41,7 @@ class CalculationsController < ApplicationController
     # The principal value the user input is in the decimal @principal.
     # ================================================================================
 
-    @monthly_payment = "Replace this string with your answer."
+    @monthly_payment = (@apr/12/100 * @principal)/(1 - ((1 + @apr/12/100)**(-@years * 12)))
 
     # ================================================================================
     # Your code goes above.

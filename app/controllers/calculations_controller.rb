@@ -14,13 +14,15 @@ class CalculationsController < ApplicationController
 
     text_split_into_array = @text.split
 
+    text_split_into_array_strip = @text.gsub(/[^a-z0-9\s]/i, "").split
+
     @word_count = text_split_into_array.size
 
     @character_count_with_spaces = @text.chars.length
 
     @character_count_without_spaces = @text.tr(" ", "").chars.length
 
-    @occurrences = text_split_into_array.count(@special_word)
+    @occurrences = text_split_into_array_strip.count(@special_word)
 
     # ================================================================================
     # Your code goes above.

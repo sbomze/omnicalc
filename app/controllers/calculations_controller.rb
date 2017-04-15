@@ -107,7 +107,8 @@ class CalculationsController < ApplicationController
 
     @standard_deviation = @variance**0.5
 
-    @mode = @numbers.max_by { |v| @numbers.inject(Hash.new(0)) { |h,v| h[v] += 1; h }}
+    @mode = a.group_by(&:itself).values.max_by(&:size).first
+    # @numbers.max_by { |v| @numbers.inject(Hash.new(0)) { |h,v| h[v] += 1; h }}
 
     # ================================================================================
     # Your code goes above.
